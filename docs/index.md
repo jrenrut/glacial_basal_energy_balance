@@ -1,8 +1,39 @@
 # Coupling of Tectonic Uplift and Climate via Glacial Basal Energy Balance
 
-Below are several experiments run using my `Mountain` class. Computational cost limited me to about 10k years of simulation time, so I increased uplift, erosion, and precipitation rates in order to observe large-scale mountain-climate interactions.
+<!-- Sidebar Table of Contents -->
+<nav id="toc"></nav>
 
-# Coupling of Tectonic Uplift and Climate via Glacial Basal Energy Balance
+<style>
+	/* Sticky sidebar TOC */
+	#toc {
+		position: fixed;
+		top: 100px;
+		right: 20px;
+		width: 260px;
+		max-height: 70vh;
+		overflow: auto;
+		padding: 12px 14px;
+		border: 1px solid #ddd;
+		background: #ffffff;
+		box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+		font-family: Courier New, monospace;
+		font-size: 14px;
+		z-index: 999;
+	}
+	#toc h3 { margin: 0 0 8px; font-size: 15px; }
+	#toc ul { list-style: none; padding-left: 0; margin: 0; }
+	#toc li { margin: 6px 0; }
+	#toc a { text-decoration: none; color: #0366d6; }
+	#toc a:hover { text-decoration: underline; }
+	/* Indentation for nested headings */
+	#toc ul ul { padding-left: 14px; }
+	/* Keep main content from hiding under TOC on small screens */
+	@media (max-width: 1000px) {
+		#toc { position: static; width: auto; max-height: none; margin: 10px 0; }
+	}
+</style>
+
+Below are several experiments run using my `Mountain` class. Computational cost limited me to about 10k years of simulation time, so I increased uplift, erosion, and precipitation rates in order to observe large-scale mountain-climate interactions.
 
 <!-- Enable MathJax for $...$ and $$...$$ rendering on GitHub Pages -->
 <script>
@@ -171,10 +202,65 @@ This is a more moderate glacial shielding scenario. The background climate is sl
 
 Here the initial geometry is reversed so the windward side is longer than the leeward slope. Additionally, there is a wet climate, and a lower angle of repose and faster slope diffusion response. This experiment demonstrates an enhanced buzzsaw. There seems to be an unrealistic amount of ice reaching the base. Partially this is because the orographic forcing does not take into account change in mountain height. Also since the slope by the peak is high and the ice is temperate, any ice that accretes there will quickly advect downslope. Interstingly, the peak in this experiment shifts to the left, since erosion is more powerful on the leeward slope.
 
-<iframe src="experiment_1/mountain_glacial_buzzsaw.html" width="100%" height="600" frameborder="0"></iframe>
+<iframe src="experiment_4/mountain_reverse_buzzsaw.html" width="100%" height="600" frameborder="0"></iframe>
 
-<iframe src="experiment_1/flux_glacial_buzzsaw.html" width="100%" height="600" frameborder="0"></iframe>
+<iframe src="experiment_4/flux_reverse_buzzsaw.html" width="100%" height="600" frameborder="0"></iframe>
 
-<iframe src="experiment_1/temp_glacial_buzzsaw.html" width="100%" height="600" frameborder="0"></iframe>
+<iframe src="experiment_4/temp_reverse_buzzsaw.html" width="100%" height="600" frameborder="0"></iframe>
 
-<iframe src="experiment_1/rate_glacial_buzzsaw.html" width="100%" height="600" frameborder="0"></iframe>
+<iframe src="experiment_4/rate_reverse_buzzsaw.html" width="100%" height="600" frameborder="0"></iframe>
+
+<script>
+// Build sidebar TOC from h2/h3 headings
+(function() {
+	function slugify(text) {
+		return text.toLowerCase()
+			.replace(/[^a-z0-9\s-]/g, '')
+			.trim()
+			.replace(/\s+/g, '-')
+			.replace(/-+/g, '-');
+	}
+
+	const toc = document.getElementById('toc');
+	if (!toc) return;
+
+	const headings = Array.from(document.querySelectorAll('h2, h3'));
+	if (headings.length === 0) return;
+
+	const container = document.createElement('div');
+	const title = document.createElement('h3');
+	title.textContent = 'Contents';
+	container.appendChild(title);
+
+	const ul = document.createElement('ul');
+	let currentUl = ul;
+	let lastLevel = 2;
+
+	headings.forEach(h => {
+		const level = parseInt(h.tagName.substring(1), 10);
+		if (!h.id || h.id.length === 0) {
+			h.id = slugify(h.textContent || h.innerText || 'section');
+		}
+		// Nesting logic: create sublist for h3 under last h2
+		if (level > lastLevel) {
+			const sub = document.createElement('ul');
+			currentUl.lastElementChild && currentUl.lastElementChild.appendChild(sub);
+			currentUl = sub;
+		} else if (level < lastLevel) {
+			// move back to parent list
+			currentUl = ul;
+		}
+		lastLevel = level;
+
+		const li = document.createElement('li');
+		const a = document.createElement('a');
+		a.href = '#' + h.id;
+		a.textContent = h.textContent || h.innerText || '';
+		li.appendChild(a);
+		currentUl.appendChild(li);
+	});
+
+	container.appendChild(ul);
+	toc.appendChild(container);
+})();
+</script>
