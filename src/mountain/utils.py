@@ -615,7 +615,9 @@ def plot_mountain(mountain, fname=""):
     temp_fig.show()
 
     # save figures as html
-    mtn_fig.write_html(f"mountain_{fname}.html", include_plotlyjs="cdn")
-    rate_fig.write_html(f"rate_{fname}.html", include_plotlyjs="cdn")
-    flux_fig.write_html(f"flux_{fname}.html", include_plotlyjs="cdn")
-    temp_fig.write_html(f"temp_{fname}.html", include_plotlyjs="cdn")
+    mtn_fig.write_html(
+        f"mountain_{fname}.html", include_plotlyjs="cdn", auto_play=False
+    )
+    rate_fig.write_html(f"rate_{fname}.html", include_plotlyjs="cdn", auto_play=False)
+    flux_fig.write_html(f"flux_{fname}.html", include_plotlyjs="cdn", auto_play=False)
+    temp_fig.write_html(f"temp_{fname}.html", include_plotlyjs="cdn", auto_play=False)

@@ -706,7 +706,7 @@ if __name__ == "__main__":
 
     plot_mountain(mountain, fname)
 
-    # Experiment 2: escape from glacial shielding
+    # Experiment 3: escape from glacial shielding
     #  A tall mountain with high uplift and low precipitation
     fname = "glacial_unshielding"
 
@@ -724,6 +724,32 @@ if __name__ == "__main__":
         height=6000.0,
         length1=20000.0,
         length2=40000.0,
+        mountain_buffer=0.2,
+    )
+
+    plot_mountain(mountain, fname)
+
+    # Experiment 4: escape from glacial shielding
+    #  A tall mountain with high uplift and low precipitation
+    fname = "reverse_buzzsaw"
+
+    CLIMATE_TEMP = 286.0  # K - surface temperature
+    CLIMATE_Q_0 = 1e-2  # dimensionless - kg water per kg air
+    PRECIPITATION_SCALE = 1e-1  # dimensionless - scaling factor for precipitation
+    Q_GEO_0 = 0.05  # W m^-2 - initial geothermal heat flux
+    UPLIFT_RATE = 1e-2 / SECONDS_PER_YEAR  # m s^-1 - uniform uplift rate
+    ANGLE_OF_REPOSE = 25.0  # degrees - angle of repose for mountain
+    SLOPE_MAX = np.tan(np.deg2rad(ANGLE_OF_REPOSE))  # max |dz/dx|
+    K_REPOSE = 5e-2  # m^2 s^-1 - flux coefficient for excess slope
+
+    mountain = Mountain(
+        dt=10,
+        t0=0.0,
+        t1=1e4,
+        n_x=301,
+        height=4000.0,
+        length1=40000.0,
+        length2=20000.0,
         mountain_buffer=0.2,
     )
 
