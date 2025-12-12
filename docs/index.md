@@ -51,13 +51,15 @@ window.MathJax = {
 
 ## Orographic Forcing
 
-Orographic precipitation is a function of multiple climatic variables, in addition to mountain geography. This interactive figure demonstrates how precipiration rate changes based on mountain shape.
+Orographic precipitation is a function of multiple climatic variables, in addition to mountain geography (Roe & Baker, 2005). This interactive figure demonstrates how precipiration rate changes based on mountain shape.
 
 <iframe src="mountain_precipitation_widget.html" width="100%" height="600" frameborder="0"></iframe>
 
 ## Experiment 1 - Galcial Buzzsaw
 
-### Parameters
+This experiment demonstrates the glacial buzzsaw effect with moderate uplift and high precipitation.
+
+### Parameterization
 
 #### Tectonic & Climatic
 
@@ -68,6 +70,8 @@ Orographic precipitation is a function of multiple climatic variables, in additi
 | PRECIPITATION_SCALE | $$\alpha_p$$ | Precipitation scaling factor | $$1\times 10^{-1}$$ | - |
 | Q_GEO_0 | $$Q_{geo}$$ | Initial geothermal heat flux | $$0.05$$ | $$\text{W}\,\text{m}^{-2}$$ |
 | UPLIFT_RATE | $$\dot{U}$$ | Uniform uplift rate | $$1\times 10^{-2}$$ | $$\text{m}\,\text{a}^{-1}$$ |
+| ANGLE_OF_REPOSE | $$\theta_r$$ | Maximum mountain slope | $$35^{\circ}$$ | $$\text{deg}$$ |
+| K_REPOSE | $$K_r$$ | Slope diffusion | $$5\times 10^{-3}$$ | $$\text{m}^2\,\text{s}^{-1}$$ |
 
 #### Simulation
 
@@ -83,19 +87,25 @@ Orographic precipitation is a function of multiple climatic variables, in additi
 
 ### Result
 
-This experiment demonstrates the glacial buzzsaw effect. Because uplift is moderate and precipiation is high, ice quickly builds up and erodes the mountain. When the critical angle of repose of the mountain is reached, it fails to grow. Interstingly, the peak begins to shift to the right, since erosion is acting more strongly on the windward side. This shows how a directional orographic forcing can cause significant changes to a landscape.
-
 <iframe src="experiment_1/mountain_glacial_buzzsaw.html" width="100%" height="600" frameborder="0"></iframe>
+
+Because uplift is moderate and precipiation is high, ice quickly builds up and erodes the mountain. When the critical angle of repose of the mountain is reached, it fails to grow. Interstingly, the peak begins to shift to the right, since erosion is acting more strongly on the windward side. This shows how a directional orographic forcing can cause significant changes to a landscape.
 
 <iframe src="experiment_1/flux_glacial_buzzsaw.html" width="100%" height="600" frameborder="0"></iframe>
 
+Frictional heat flux is observed to be dominant.
+
 <iframe src="experiment_1/temp_glacial_buzzsaw.html" width="100%" height="600" frameborder="0"></iframe>
+
+Basal temperature begins at the surface temperature, but due to net positive heat flux, soon reaches melting temperature across much of the mountain profile.
 
 <iframe src="experiment_1/rate_glacial_buzzsaw.html" width="100%" height="600" frameborder="0"></iframe>
 
 ## Experiment 2 - Glacial Shielding
 
-### Parameters
+In this experiment, uplift is faster and the background climate is colder and drier. This results in a thinner layer of ice on the mountain, leading to conductive heat flux being dominant and a shielding effect taking place. Additionally, the mountian geometry has a greater initial height compared to Experiment 1.
+
+### Parameterization
 
 #### Tectonic & Climatic
 
@@ -106,6 +116,8 @@ This experiment demonstrates the glacial buzzsaw effect. Because uplift is moder
 | PRECIPITATION_SCALE | $$\alpha_p$$ | Precipitation scaling factor | $$1\times 10^{-3}$$ | - |
 | Q_GEO_0 | $$Q_{geo}$$ | Initial geothermal heat flux | $$0.05$$ | $$\text{W}\,\text{m}^{-2}$$ |
 | UPLIFT_RATE | $$\dot{U}$$ | Uniform uplift rate | $$1\times 10^{-1}$$ | $$\text{m}\,\text{a}^{-1}$$ |
+| ANGLE_OF_REPOSE | $$\theta_r$$ | Maximum mountain slope | $$35^{\circ}$$ | $$\text{deg}$$ |
+| K_REPOSE | $$K_r$$ | Slope diffusion | $$5\times 10^{-3}$$ | $$\text{m}^2\,\text{s}^{-1}$$ |
 
 #### Simulation
 
@@ -121,19 +133,25 @@ This experiment demonstrates the glacial buzzsaw effect. Because uplift is moder
 
 ### Result
 
-In this experiment, uplift is faster and the background climate is colder and drier. This results in a thinner layer of ice on the mountain, leading to conductive heat flux being dominant. The temperature plot shows that the basal temperature remains below the pressure melting temperature on much of the mountain. In these cells, the ice is stuck fast to the bedrock and no erosion takes place. Thus the peak does not deviat from the uneroded reference.
-
 <iframe src="experiment_2/mountain_glacial_shielding.html" width="100%" height="600" frameborder="0"></iframe>
+
+Ice height is noticeably lower in this experiment. Only towards the end of the simulation is erosion noticeable around the ELA. The peak and most of the higher slopes do not deviate from the uneroded reference.
 
 <iframe src="experiment_2/flux_glacial_shielding.html" width="100%" height="600" frameborder="0"></iframe>
 
+Conductive heat flux away from the ice base is observed to be dominant. Conductive heat flux is inversely proportional to ice thickness so this is to be expected in a cold, dry climate.
+
 <iframe src="experiment_2/temp_glacial_shielding.html" width="100%" height="600" frameborder="0"></iframe>
+
+Basal temperature remains below the pressure melting temperature on much of the mountain, so the ice is frozen to the bed.
 
 <iframe src="experiment_2/rate_glacial_shielding.html" width="100%" height="600" frameborder="0"></iframe>
 
 ## Experiment 3 - Reduced Shielding
 
-### Parameters
+This is a more moderate glacial shielding scenario. The background climate is slightly warmer and wetter, which will limit conductive heat flux and encourage basal melt.
+
+### Parameterization
 
 #### Tectonic & Climatic
 
@@ -144,6 +162,8 @@ In this experiment, uplift is faster and the background climate is colder and dr
 | PRECIPITATION_SCALE | $$\alpha_p$$ | Precipitation scaling factor | $$1\times 10^{-3}$$ | - |
 | Q_GEO_0 | $$Q_{geo}$$ | Initial geothermal heat flux | $$0.05$$ | $$\text{W}\,\text{m}^{-2}$$ |
 | UPLIFT_RATE | $$\dot{U}$$ | Uniform uplift rate | $$1\times 10^{-1}$$ | $$\text{m}\,\text{a}^{-1}$$ |
+| ANGLE_OF_REPOSE | $$\theta_r$$ | Maximum mountain slope | $$35^{\circ}$$ | $$\text{deg}$$ |
+| K_REPOSE | $$K_r$$ | Slope diffusion | $$5\times 10^{-3}$$ | $$\text{m}^2\,\text{s}^{-1}$$ |
 
 #### Simulation
 
@@ -159,19 +179,25 @@ In this experiment, uplift is faster and the background climate is colder and dr
 
 ### Result
 
-This is a more moderate glacial shielding scenario. The background climate is slightly warmer and wetter, which will limit conductive heat flux and encourage basal melt.
-
 <iframe src="experiment_3/mountain_glacial_unshielding.html" width="100%" height="600" frameborder="0"></iframe>
+
+Ice height is slightly thicker compared to Experiment 2. Erosion acts quickly, however around the summit the shielding effect still dominates. The maximum angle of repose can be clearly observed on the windward slope at the end of the simulation.
 
 <iframe src="experiment_3/flux_glacial_unshielding.html" width="100%" height="600" frameborder="0"></iframe>
 
+Frictional and deformational heat flux dominate downslope, while conductive heat flux dominates around the summit.
+
 <iframe src="experiment_3/temp_glacial_unshielding.html" width="100%" height="600" frameborder="0"></iframe>
+
+Basal temperature remains below the pressure melting temperature around the summit, but reaches melting temperature much earlier downslope compared to Experiment 2.
 
 <iframe src="experiment_3/rate_glacial_unshielding.html" width="100%" height="600" frameborder="0"></iframe>
 
 ## Experiment 4 - Enhanced Buzzsaw & A Different Geometry
 
-### Parameters
+Here the initial geometry is reversed compared to Experiment 1, so the windward side is longer than the leeward slope. Additionally, there is a wet climate, and a lower angle of repose and faster slope diffusion response. This experiment demonstrates an enhanced buzzsaw effect.
+
+### Parameterization
 
 #### Tectonic & Climatic
 
@@ -200,13 +226,17 @@ This is a more moderate glacial shielding scenario. The background climate is sl
 
 ### Result
 
-Here the initial geometry is reversed so the windward side is longer than the leeward slope. Additionally, there is a wet climate, and a lower angle of repose and faster slope diffusion response. This experiment demonstrates an enhanced buzzsaw. There seems to be an unrealistic amount of ice reaching the base. Partially this is because the orographic forcing does not take into account change in mountain height. Also since the slope by the peak is high and the ice is temperate, any ice that accretes there will quickly advect downslope. Interstingly, the peak in this experiment shifts to the left, since erosion is more powerful on the leeward slope.
-
 <iframe src="experiment_4/mountain_reverse_buzzsaw.html" width="100%" height="600" frameborder="0"></iframe>
+
+There seems to be an unrealistic amount of ice reaching the base. Partially this is because the orographic forcing does not take into account change in mountain height. Also since the slope by the peak is high and the ice is temperate, any ice that accretes there will quickly advect downslope. Interstingly, the peak in this experiment shifts to the left, since erosion is more powerful on the leeward slope.
 
 <iframe src="experiment_4/flux_reverse_buzzsaw.html" width="100%" height="600" frameborder="0"></iframe>
 
+Frictional heat flux is observed to dominate.
+
 <iframe src="experiment_4/temp_reverse_buzzsaw.html" width="100%" height="600" frameborder="0"></iframe>
+
+Basal temperature begins at the surface temperature, but due to net positive heat flux, soon reaches melting temperature across much of the mountain profile.
 
 <iframe src="experiment_4/rate_reverse_buzzsaw.html" width="100%" height="600" frameborder="0"></iframe>
 
